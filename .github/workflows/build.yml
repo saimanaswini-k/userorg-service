@@ -37,7 +37,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: userorg-service
-          path: /controller/target/userorg-service-1.0-SNAPSHOT-dist.zip
+          path: ./controller/target/userorg-service-1.0-SNAPSHOT-dist.zip
 
       - name: Checkout code
         uses: actions/checkout@v4
