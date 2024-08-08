@@ -31,7 +31,7 @@ jobs:
         run: mvn clean install
 
       - name: Save the build artifact
-        run: mvn -f service/pom.xml play2:dist
+        run: mvn -f controller/pom.xml play2:dist
 
       - name: Store build artifact
         uses: actions/upload-artifact@v3
