@@ -3,7 +3,8 @@ on:
   push:
     tags:
       - '*'
-  
+  pull_request:
+    types: [opened, synchronize]
 
 jobs:
   Test-and-Build:
@@ -53,3 +54,5 @@ jobs:
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.coverage.exclusions=**/cassandra-utils/**,**/es-utils/**,**/models/**,**/model/**,**/bean/**,**/dto/**,**/bulkupload/**,**/error/**,**/exception/**,**/util/search/** \
             -Dsonar.coverage.jacoco.xmlReportPaths=/home/runner/work/userorg-service/userorg-service/reports/target/jacoco/jacoco.xml
+
+       
