@@ -2,10 +2,11 @@ name: Build and Deploy
 on:
   push:
     tags:
-      - '*' 
-      
+      - '*'
+  
+
 jobs:
-  Docker-build:
+  Test-and-Build:
     runs-on: ubuntu-latest
     steps:
       - name: Set up JDK 11
@@ -30,23 +31,11 @@ jobs:
       - name: Build and Run test cases
         run: mvn clean install
 
-      - name: Save the build artifact
-        run: mvn -f controller/pom.xml play2:dist
-
       - name: Store build artifact
         uses: actions/upload-artifact@v3
         with:
           name: userorg-service
           path: controller/target/userorg-service-1.0-SNAPSHOT-dist.zip
-
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Download build artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: userorg-service
-          path: ./controller/target/
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -58,4 +47,9 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-            mvn verify -DskipTests sonar:sonar -Dsonar.projectKey=saimanaswini-k_userorg-service -Dsonar.organization=saimanaswini -Dsonar.host.url=https://sonarcloud.io -Dsonar.coverage.exclusions=**/cassandra-utils/**,**/es-utils/**,**/models/**,**/model/**,**/bean/**,**/dto/**,**/bulkupload/**,**/error/**,**/exception/**,**/util/search/** -Dsonar.coverage.jacoco.xmlReportPaths=/home/work/runner/userorg-service/userorg-service/reports/target/jacoco/jacoco.xml
+          mvn verify -DskipTests org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+            -Dsonar.projectKey=saimanaswini-k_userorg-service \
+            -Dsonar.organization=saimanaswini \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.coverage.exclusions=**/cassandra-utils/**,**/es-utils/**,**/models/**,**/model/**,**/bean/**,**/dto/**,**/bulkupload/**,**/error/**,**/exception/**,**/util/search/** \
+            -Dsonar.coverage.jacoco.xmlReportPaths=/home/runner/work/userorg-service/userorg-service/reports/target/jacoco/jacoco.xml
