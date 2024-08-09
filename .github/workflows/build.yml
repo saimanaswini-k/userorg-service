@@ -50,9 +50,7 @@ jobs:
         run: |
           mvn verify -DskipTests org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
             -Dsonar.projectKey=saimanaswini-k_userorg-service \
-            -Dsonar.organization=saimanaswini \
+            -Dsonar.organization=saimanaswini-k-1 \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.coverage.exclusions=**/cassandra-utils/**,**/es-utils/**,**/models/**,**/model/**,**/bean/**,**/dto/**,**/bulkupload/**,**/error/**,**/exception/**,**/util/search/** \
             -Dsonar.coverage.jacoco.xmlReportPaths=/home/runner/work/userorg-service/userorg-service/reports/target/jacoco/jacoco.xml
-
-       
