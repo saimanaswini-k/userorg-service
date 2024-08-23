@@ -1,4 +1,5 @@
 FROM eclipse-temurin:11-jdk-focal
+
 RUN apt-get update && \
     apt-get install -y unzip curl && \
     adduser --uid 1001 --home /home/sunbird --disabled-password sunbird && \
