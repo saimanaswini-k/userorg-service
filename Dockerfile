@@ -1,5 +1,4 @@
-FROM adoptopenjdk/openjdk11:alpine-slim
-MAINTAINER "Manojv" "manojv@ilimi.in"
+FROM adoptopenjdk:11-jdk-hotspot
 RUN apk update \
     && apk add  unzip \
     && apk add curl \
