@@ -38,7 +38,6 @@ jobs:
           key: userorg-dependency-cache-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             userorg-dependency-cache-
-
       - name: Build and Run test cases
         run: mvn clean install
 
@@ -91,7 +90,6 @@ jobs:
             ${{ steps.meta.outputs.tags }}
           labels: |
             ${{ steps.meta.outputs.labels }}
-
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
         with: 
