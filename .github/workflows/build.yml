@@ -72,12 +72,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_LOGIN }}
 
-      - name : Extract metadata (tags,labels) for Docker 
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-
       - name: Extract metadata (tags,labels) for Docker
         id: meta
         uses: docker/metadata-action@v5
